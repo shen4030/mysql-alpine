@@ -42,9 +42,8 @@ EOF
             echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'localhost' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tfile
         fi
     fi
-    sed -ri -e 's!#bind-address=0.0.0.0!bind-address=0.0.0.0!g' /etc/my.cnf.d/mariadb-server.cnf
     /usr/bin/mysqld --user=root --bootstrap --verbose=0 < $tfile
     rm -f $tfile
 fi
 
-exec /usr/bin/mysqld --user=root --console
+exec /usr/bin/mysqld --user=root --console --skip-name-resolve --skip-networking=0

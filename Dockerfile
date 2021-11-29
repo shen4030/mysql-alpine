@@ -14,7 +14,6 @@ RUN apk update \
     && apk del tzdata \
     && rm -rf /var/cache/apk/*
 
-#COPY conf/my.cnf /etc/my.cnf
 COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
 
